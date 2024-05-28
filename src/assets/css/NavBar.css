@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  border-bottom: 3px solid var(--white);
+  padding: 1rem;
+  color: var(--white);
+  position: sticky;
+  top: 0px;
+  background: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-actions a {
+  border: 1px solid var(--white);
+  padding: .5rem 1rem;
+  border-radius: 6px;
+}
+
+.nav .logo {
+  width: 45px;
+}
