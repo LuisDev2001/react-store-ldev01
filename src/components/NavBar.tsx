@@ -7,7 +7,7 @@ const NavBar = () => {
       <img src={viteLogo} className="logo" alt="Vite logo" />
 
       <div className='nav-actions'>
-        <a href="#">Productos</a>
+        <a href="#">Carrito</a>
         <a href="#">Favoritos</a>
       </div>
     </nav>

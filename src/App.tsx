@@ -1,5 +1,6 @@
 import NavBar from '@/components/NavBar'
 import Product from '@/components/Product'
+import { Link } from 'react-router-dom'
 import '@/assets/css/App.css'
 
 const products = Array.from({ length: 20 }, (_, index) => ({
@@ -9,6 +10,8 @@ const products = Array.from({ length: 20 }, (_, index) => ({
   img: '/productImage.jpg',
 }));
 
+localStorage.setItem('products', JSON.stringify(products))
+
 const App = () => {
   return (
     <>
@@ -16,7 +19,9 @@ const App = () => {
       <div className='product-list'>
         {
           products.map((product) => (
-            <Product key={product.id} {...product} />
+            <Link to={`product-detail/${product.id}`} key={product.id}>
+              <Product {...product} />
+            </Link>
           ))
         }
       </div>

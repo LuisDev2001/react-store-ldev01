@@ -1,5 +1,6 @@
 import '@/assets/css/Product.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 export interface Props {
@@ -20,7 +21,10 @@ const Product = (props: Props) => {
         </div>
       </div>
       <div className='product-actions'>
-        <button>
+        <button className='product-actions__add'>
+          <FontAwesomeIcon icon={faCartShopping} />
+        </button>
+        <button className='product-actions__fav'>
           <FontAwesomeIcon icon={faHeart} />
         </button>
       </div>
