@@ -1,4 +1,6 @@
+import '@/assets/css/ProductDetail.css'
 import { useParams } from 'react-router-dom'
+import Product from '@/components/Product'
 
 export interface Product {
   id: string
@@ -7,21 +9,22 @@ export interface Product {
   img: string
 }
 const ProductDetailView = () => {
-  const products: Product[] = JSON.parse(localStorage.getItem('products') || '""')
+  const products: Product[] = JSON.parse(localStorage.getItem('products') || '[]')
   const { id } = useParams()
-  const divStyle = {
-    color: 'white',
-    backgroundColor: '#000',
-    fontSize: '4rem'
+
+
+  const findProduct = products?.find((product) => product.id === id)
+
+  if (findProduct) {
+    return (
+      <div className='product-detail'>
+        <Product {...findProduct} />
+      </div>
+    )
   }
 
-  const findProduct = products.find((product) => product.id === id)
-
   return (
-    <div style={divStyle}>
-      Product details view {id}
-      <p>{JSON.stringify(findProduct)}</p>
-    </div>
+    <div>No se encontró el producto</div>
   )
 }
 
