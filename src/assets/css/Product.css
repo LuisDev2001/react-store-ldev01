@@ -19,6 +19,15 @@
   margin: 0 0 .5rem 0;
 }
 
+.product-qty input[type="number"]{
+  border: 0;
+  height: 30px;
+  font-size: 1.2rem;
+  padding: .5rem;
+  outline: none;
+  border-radius: 4px;
+}
+
 .product-current__price {
   background: var(--warning);
   color: var(--primary);
