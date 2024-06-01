@@ -10,6 +10,7 @@ export interface Props {
   name: string
   price: number
   img: string
+  hasProductInCart?: boolean
   children?: ReactNode
   onAddToCart?: () => void
   onAddToFavorite?: () => void
@@ -28,15 +29,21 @@ const Product = (props: Props) => {
           <span className='product-current__price'>${props.price}</span>
         </div>
       </div>
-      <div className='product-qty'>
-        {props.children}
-      </div>
+      {
+        !props.hasProductInCart &&
+        <div className='product-qty'>
+          {props.children}
+        </div>
+      }
       {
         hasActions &&
         <div className='product-actions'>
-          <button className='product-actions__add' onClick={props.onAddToCart}>
-            <FontAwesomeIcon icon={faCartShopping} />
-          </button>
+          {
+            !props.hasProductInCart &&
+            <button className='product-actions__add' onClick={props.onAddToCart}>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </button>
+          }
           <button className='product-actions__fav' onClick={props.onAddToFavorite}>
             <FontAwesomeIcon icon={faHeart} />
           </button>
