@@ -15,9 +15,9 @@ const routes = [
       { path: 'cart', element: <CheckoutView /> },
       { path: 'product-detail/:id', element: <ProductDetailView /> },
       { path: 'favorite', element: <FavoriteView /> },
-      { path: '/thanks', element: <ThanksView /> }
     ],
   },
+  { path: '/thanks', element: <ThanksView /> }
 ]
 
 const router = createBrowserRouter(routes)

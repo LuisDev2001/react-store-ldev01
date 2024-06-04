@@ -5,24 +5,18 @@
   width: 100%;
   max-width: 550px;
   margin: 0 auto;
-  border-bottom: 3px solid var(--white);
   padding: 1rem;
   color: var(--white);
   position: sticky;
-  top: 0px;
-  background: var(--primary);
+  top: 10px;
+  background: rgba(255, 255, 255, .90);
+  border-radius: 1rem;
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.nav-actions a {
-  border: 1px solid var(--white);
-  padding: .5rem 1rem;
-  border-radius: 6px;
 }
 
 .nav .logo {

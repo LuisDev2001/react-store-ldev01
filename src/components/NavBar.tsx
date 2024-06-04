@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import viteLogo from '/vite.svg'
+import Button from '@/components/Button'
 import '@/assets/css/NavBar.css'
 
 const NavBar = () => {
@@ -10,8 +11,16 @@ const NavBar = () => {
       </Link>
 
       <div className='nav-actions'>
-        <Link to="/cart">Carrito</Link>
-        <Link to="/favorite">Favoritos</Link>
+        <Link to="/cart">
+          <Button variant='secondary'>
+            Carrito
+          </Button>
+        </Link>
+        <Link to="/favorite">
+          <Button variant='secondary'>
+            Favoritos
+          </Button>
+        </Link>
       </div>
     </nav>
   )
