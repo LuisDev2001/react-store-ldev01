@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 import HomeView from '@/views/HomeView'
-import CartView from '@/views/CartView'
+import CheckoutView from '@/views/CheckoutView'
 import ProductDetailView from '@/views/ProductDetailView';
 import FavoriteView from '@/views/FavoriteView';
+import ThanksView from '@/views/ThanksView';
 import DefaultLayout from '@/layouts/DefaultLayout';
 
 const routes = [
@@ -11,9 +12,10 @@ const routes = [
     element: <DefaultLayout />,
     children: [
       { path: '/', element: <HomeView /> },
-      { path: 'cart', element: <CartView /> },
+      { path: 'cart', element: <CheckoutView /> },
       { path: 'product-detail/:id', element: <ProductDetailView /> },
       { path: 'favorite', element: <FavoriteView /> },
+      { path: '/thanks', element: <ThanksView /> }
     ],
   },
 ]

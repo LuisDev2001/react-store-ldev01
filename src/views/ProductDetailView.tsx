@@ -11,11 +11,14 @@ export interface Product {
   quantity: number
 }
 const ProductDetailView = () => {
+  const { id } = useParams()
+
   const productsInStorage: Product[] = !localStorage.getItem("cart")
     ? localStorage.setItem("cart", JSON.stringify([]))
     : JSON.parse(localStorage.getItem("cart") || '[]')
+
   const products: Product[] = JSON.parse(localStorage.getItem('products') || '[]')
-  const { id } = useParams()
+
   const [quantity, setQuantity] = useState<number>(1)
   const [findProductInCart, setFindProductInCart] = useState(false)
 
@@ -39,6 +42,7 @@ const ProductDetailView = () => {
   useEffect(() => {
     setFindProductInCart(!!productsInStorage?.find((productCart) => productCart.id === id))
   }, [id, productsInStorage])
+  // Esto asegura que el efecto solo se ejecute cuando estos valores cambien, evitando potenciales bucles infinitos.
 
   if (findProduct) {
     return (
