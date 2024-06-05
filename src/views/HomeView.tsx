@@ -1,5 +1,10 @@
 import Product from '@/components/Product'
+import Button from '@/components/Button'
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import '@/assets/css/views/Home.css'
 
 const products = Array.from({ length: 20 }, (_, index) => ({
   id: `${index + 1}`,
@@ -7,20 +12,51 @@ const products = Array.from({ length: 20 }, (_, index) => ({
   price: (index + 1) * 10,
   discount: index < 10 ? (index + 1) * 2 : 0,
   img: '/productImage.jpg',
-}));
+}))
 
 localStorage.setItem('products', JSON.stringify(products))
 
 const HomeView = () => {
+  const [from, setFrom] = useState(0)
+  const [to, setTo] = useState(5)
+  const newProductList = products.slice(from, to)
+
+  const handleNextPage = () => {
+    setFrom(from + 5)
+    setTo(to + 5)
+  }
+
+  const handlePrevPage = () => {
+    setFrom(from - 5)
+    setTo(to - 5)
+  }
+
   return (
     <div className='product-list'>
       {
-        products.map((product) => (
+        newProductList.map((product) => (
           <Link to={`product-detail/${product.id}`} key={product.id}>
             <Product {...product} />
           </Link>
         ))
       }
+
+      <div className='pagination'>
+        <Button
+          variant='secondary'
+          disabled={from === 0}
+          onClick={handlePrevPage}
+        >
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Button>
+        <Button
+          variant='secondary'
+          onClick={handleNextPage}
+          disabled={to === products.length}
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </Button>
+      </div>
     </div>
   )
 }
