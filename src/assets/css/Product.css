@@ -19,6 +19,29 @@
   margin: 0 0 .5rem 0;
 }
 
+.product-prices {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-discount {
+  color: var(--danger);
+  display: inline-block;
+  margin: 0 0 .3rem 0;
+}
+
+.product-current__price,
+.product-discount__price {
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: .8rem;
+  width: 50px;
+  text-align: center;
+}
+
 .product-qty input[type="number"]{
   border: 0;
   height: 30px;
@@ -31,9 +54,15 @@
 .product-current__price {
   background: var(--warning);
   color: var(--primary);
-  padding: 3px 6px;
-  border-radius: 4px;
-  display: inline-block;
+}
+
+.product-current__price.crossout {
+  text-decoration: line-through;
+}
+
+.product-discount__price {
+  background: var(--danger);
+  color: var(--white);
 }
 
 .product-actions {

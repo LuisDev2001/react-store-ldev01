@@ -5,6 +5,7 @@ const products = Array.from({ length: 20 }, (_, index) => ({
   id: `${index + 1}`,
   name: `Producto Nike Black T-Shirt ${index + 1}`,
   price: (index + 1) * 10,
+  discount: index < 10 ? (index + 1) * 2 : 0,
   img: '/productImage.jpg',
 }));
 

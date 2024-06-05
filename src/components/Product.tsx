@@ -1,4 +1,5 @@
 import '@/assets/css/Product.css'
+import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useMatches } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +11,7 @@ export interface Props {
   name: string
   price: number
   img: string
+  discount: number
   hasProductInCart?: boolean
   children?: ReactNode
   onAddToCart?: () => void
@@ -18,15 +20,31 @@ export interface Props {
 
 const Product = (props: Props) => {
   const matches = useMatches()
+  const [priceDiscount, setPriceDiscount] = useState(0)
   const hasActions = matches.find((route) => route.pathname.includes(`/product-detail/${props.id}`))
+
+  useEffect(() => {
+    const calcDiscount = props.price - ((props.price * props.discount) / 100)
+    setPriceDiscount(calcDiscount)
+  }, [props.price, props.discount])
 
   return (
     <div className="product">
       <img src={props.img} alt="Imagen del producto" />
       <div className='product-details'>
         <p>{props.name}</p>
+        {
+          props.discount !== 0 &&
+          <span className='product-discount'>{props.discount}% OFF</span>
+        }
         <div className='product-prices'>
-          <span className='product-current__price'>${props.price}</span>
+          <span className={`product-current__price ${props.discount !== 0 && 'crossout'}`}>
+            ${props.price}
+          </span>
+          {
+            props.discount !== 0 &&
+            <span className='product-discount__price'>${priceDiscount}</span>
+          }
         </div>
       </div>
       {
