@@ -1,4 +1,3 @@
-import '@/assets/css/ProductDetail.css'
 import { useEffect, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
@@ -7,6 +6,7 @@ export interface Product {
   id: string
   name: string
   price: number
+  discount: number
   img: string
   quantity: number
 }
@@ -46,11 +46,12 @@ const ProductDetailView = () => {
 
   if (findProduct) {
     return (
-      <div className='product-detail'>
+      <div className='mx-w-[550px] mx-auto mt-8'>
         <Product
           {...findProduct}
           hasProductInCart={findProductInCart}
           onAddToCart={handleAddToCart}
+          class='flex-col border border-solid border-white p-8 w-[300px] mx-auto'
         >
           <input
             type="number"

@@ -1,0 +1,10 @@
+:root {
+  --primary: #242424;
+  --white: #fff;
+  --warning: #FFDD36;
+  --danger: #ff1900;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

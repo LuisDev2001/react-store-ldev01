@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import '@/assets/css/views/Home.css'
 
 const products = Array.from({ length: 20 }, (_, index) => ({
   id: `${index + 1}`,
@@ -32,7 +31,7 @@ const HomeView = () => {
   }
 
   return (
-    <div className='product-list'>
+    <div className='w-full max-w-[550px] mx-auto mt-4 flex flex-col gap-4'>
       {
         newProductList.map((product) => (
           <Link to={`product-detail/${product.id}`} key={product.id}>
@@ -41,7 +40,7 @@ const HomeView = () => {
         ))
       }
 
-      <div className='pagination'>
+      <div className='flex items-center justify-end gap-4'>
         <Button
           variant='secondary'
           disabled={from === 0}

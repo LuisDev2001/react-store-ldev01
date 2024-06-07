@@ -1,4 +1,3 @@
-import '@/assets/css/Product.css'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useMatches } from 'react-router-dom'
@@ -12,6 +11,7 @@ export interface Props {
   price: number
   img: string
   discount: number
+  class?: string
   hasProductInCart?: boolean
   children?: ReactNode
   onAddToCart?: () => void
@@ -29,21 +29,23 @@ const Product = (props: Props) => {
   }, [props.price, props.discount])
 
   return (
-    <div className="product">
-      <img src={props.img} alt="Imagen del producto" />
-      <div className='product-details'>
-        <p>{props.name}</p>
+    <div className={`flex items-center justify-between gap-8 ${props.class}`}>
+      <img className='block w-24 object-cover rounded-md' src={props.img} alt="Imagen del producto" />
+      <div>
+        <p className='font-bold text-lg text-white mb-2'>{props.name}</p>
         {
           props.discount !== 0 &&
-          <span className='product-discount'>{props.discount}% OFF</span>
+          <span className='text-danger inline-block mb-1.5'>
+            {props.discount}% OFF
+          </span>
         }
-        <div className='product-prices'>
-          <span className={`product-current__price ${props.discount !== 0 && 'crossout'}`}>
+        <div className='flex items-center gap-4'>
+          <span className={`inline-block px-1.5 py-1 rounded text-sm w-12 text-center bg-warning text-primary ${props.discount !== 0 && 'line-through'}`}>
             ${props.price}
           </span>
           {
             props.discount !== 0 &&
-            <span className='product-discount__price'>${priceDiscount}</span>
+            <span className='inline-block px-1.5 py-1 rounded text-sm w-12 text-center bg-danger text-white'>${priceDiscount}</span>
           }
         </div>
       </div>
@@ -55,14 +57,14 @@ const Product = (props: Props) => {
       }
       {
         hasActions &&
-        <div className='product-actions'>
+        <div className='text-danger flex items-center gap-4'>
           {
             !props.hasProductInCart &&
-            <button className='product-actions__add' onClick={props.onAddToCart}>
+            <button className='text-warning' onClick={props.onAddToCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
           }
-          <button className='product-actions__fav' onClick={props.onAddToFavorite}>
+          <button className='text-danget' onClick={props.onAddToFavorite}>
             <FontAwesomeIcon icon={faHeart} />
           </button>
         </div>
