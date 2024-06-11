@@ -29,13 +29,13 @@ const Product = (props: Props) => {
   }, [props.price, props.discount])
 
   return (
-    <div className={`flex items-center justify-between gap-8 ${props.class}`}>
-      <img className='block w-24 object-cover rounded-md' src={props.img} alt="Imagen del producto" />
+    <div className={`w-full flex items-center justify-between gap-2 ${props.class} md:gap-8`}>
+      <img className='block w-16 object-cover rounded-md md:w-24' src={props.img} alt="Imagen del producto" />
       <div>
-        <p className='font-bold text-lg text-white mb-2'>{props.name}</p>
+        <p className='font-bold text-base text-white mb-2 md:text-lg'>{props.name}</p>
         {
           props.discount !== 0 &&
-          <span className='text-danger inline-block mb-1.5'>
+          <span className='text-danger text-sm inline-block mb-1.5'>
             {props.discount}% OFF
           </span>
         }
