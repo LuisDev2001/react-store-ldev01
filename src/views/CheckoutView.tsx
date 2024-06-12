@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Product from '@/components/Product'
 import Button from '@/components/Button'
@@ -17,6 +17,7 @@ const CheckoutView = () => {
   const router = useNavigate()
   const [isLoadingShipping, setIsLoadingShipping] = useState(false)
   const [productsInStorage, setProductsInStorage] = useState<Product[]>(JSON.parse(localStorage.getItem("cart") || '[]'))
+  const [totalAmount, setTotalAmount] = useState(0)
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     const updatedProducts = productsInStorage.map((product) =>
@@ -33,6 +34,18 @@ const CheckoutView = () => {
       setIsLoadingShipping(false)
     }, 3000);
   }
+
+  const getTotalAmount = () => {
+    let total = 0
+    for (const item of productsInStorage) {
+      total = total + (item.price * item.quantity)
+    }
+    setTotalAmount(total)
+  }
+
+  useEffect(() => {
+    getTotalAmount()
+  })
 
   return (
     <div>
@@ -62,6 +75,7 @@ const CheckoutView = () => {
               }
             </div>
             <div className="flex-1 w-full h-52 p-4 rounded-lg bg-white flex flex-col items-center justify-center gap-4 sticky top-24">
+              <p className='text-2xl'><b>Total:</b> S/{totalAmount}</p>
               <p className="text-primary text-center text-xs md:text-sm">
                 Al finalizar la compra podrás recibir los productos en la comodidad de tu hogar.
               </p>
@@ -73,15 +87,14 @@ const CheckoutView = () => {
                 {!isLoadingShipping ? 'Finalizar compra' : 'Cargando...'}
               </Button>
             </div>
-          </div> :
-          <div className="max-w-[800px] mx-auto flex flex-col items-center justify-center   gap-4 text-white">
+          </div>
+          : <div className="max-w-[800px] mx-auto flex flex-col items-center justify-center gap-4 text-white">
             No hay productos que comprar
             <div>
               <Link className='hover:underline' to="/">Regresar al home</Link>
             </div>
           </div>
       }
-
     </div>
   )
 }

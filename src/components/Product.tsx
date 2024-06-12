@@ -16,6 +16,7 @@ export interface Props {
   children?: ReactNode
   onAddToCart?: () => void
   onAddToFavorite?: () => void
+  onPassNameProduct?: (id: string) => void
 }
 
 const Product = (props: Props) => {
@@ -66,6 +67,9 @@ const Product = (props: Props) => {
           }
           <button className='text-danget' onClick={props.onAddToFavorite}>
             <FontAwesomeIcon icon={faHeart} />
+          </button>
+          <button onClick={() => props.onPassNameProduct && props.onPassNameProduct(props.id)}>
+            Nombre del producto ?
           </button>
         </div>
       }

@@ -44,6 +44,10 @@ const ProductDetailView = () => {
   }, [id, productsInStorage])
   // Esto asegura que el efecto solo se ejecute cuando estos valores cambien, evitando potenciales bucles infinitos.
 
+  const handleGetName = (productId: string) => {
+    console.log(productId);
+  }
+
   if (findProduct) {
     return (
       <div className='mx-w-[550px] mx-auto mt-8'>
@@ -51,6 +55,7 @@ const ProductDetailView = () => {
           {...findProduct}
           hasProductInCart={findProductInCart}
           onAddToCart={handleAddToCart}
+          onPassNameProduct={handleGetName}
           class='flex-col border border-solid border-white p-8 w-[300px] mx-auto'
         >
           <input
