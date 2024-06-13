@@ -15,6 +15,10 @@ const products = Array.from({ length: 20 }, (_, index) => ({
 
 localStorage.setItem('products', JSON.stringify(products))
 
+if (!localStorage.getItem("favoriteProducts")) {
+  localStorage.setItem('favoriteProducts', JSON.stringify([]))
+}
+
 const HomeView = () => {
   const [from, setFrom] = useState(0)
   const [to, setTo] = useState(5)

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useMatches } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faCartShopping, faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
 
 export interface Props {
   id: string
@@ -13,6 +13,7 @@ export interface Props {
   discount: number
   class?: string
   hasProductInCart?: boolean
+  hasProductInFavorite?: boolean
   children?: ReactNode
   onAddToCart?: () => void
   onAddToFavorite?: () => void
@@ -66,11 +67,11 @@ const Product = (props: Props) => {
             </button>
           }
           <button className='text-danget' onClick={props.onAddToFavorite}>
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={props.hasProductInFavorite ? faHeartFill : faHeartOutline} />
           </button>
-          <button onClick={() => props.onPassNameProduct && props.onPassNameProduct(props.id)}>
+          {/* <button onClick={() => props.onPassNameProduct && props.onPassNameProduct(props.id)}>
             Nombre del producto ?
-          </button>
+          </button> */}
         </div>
       }
     </div>
