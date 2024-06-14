@@ -1,24 +1,9 @@
 import { useEffect, useState } from 'react'
-import type { ReactNode } from 'react'
 import { useMatches } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faHeart as faHeartFill } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
-
-export interface Props {
-  id: string
-  name: string
-  price: number
-  img: string
-  discount: number
-  class?: string
-  hasProductInCart?: boolean
-  hasProductInFavorite?: boolean
-  children?: ReactNode
-  onAddToCart?: () => void
-  onAddToFavorite?: () => void
-  onPassNameProduct?: (id: string) => void
-}
+import type { ProductCard as Props } from '@/models/product.models'
 
 const Product = (props: Props) => {
   const matches = useMatches()

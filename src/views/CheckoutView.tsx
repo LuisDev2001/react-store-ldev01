@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Product from '@/components/Product'
+import ProductCard from '@/components/Product'
 import Button from '@/components/Button'
 import { useNavigate } from 'react-router-dom';
-
-export interface Product {
-  id: string
-  name: string
-  price: number
-  discount: number
-  img: string
-  quantity: number
-}
+import type { Product } from '@/models/product.models'
 
 const CheckoutView = () => {
   const router = useNavigate()
@@ -38,7 +30,7 @@ const CheckoutView = () => {
   const getTotalAmount = () => {
     let total = 0
     for (const item of productsInStorage) {
-      total = total + (item.price * item.quantity)
+      total = total + (item.price * (item.quantity || 0))
     }
     setTotalAmount(total)
   }
@@ -58,7 +50,7 @@ const CheckoutView = () => {
             <div className="flex flex-col items-center justify-center w-full gap-4 md:w-fit">
               {
                 productsInStorage.map((product) => (
-                  <Product
+                  <ProductCard
                     key={product.id}
                     {...product}
                   >
@@ -70,7 +62,7 @@ const CheckoutView = () => {
                       onChange={(event) => handleQuantityChange(product.id, Number(event.target.value))}
                       className="w-8 p-1 border border-gray-300 rounded md:w-16"
                     />
-                  </Product>
+                  </ProductCard>
                 ))
               }
             </div>

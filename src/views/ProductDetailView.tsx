@@ -1,16 +1,9 @@
 import { useEffect, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
-import Product from '@/components/Product'
-export interface Product {
-  id: string
-  name: string
-  price: number
-  discount: number
-  img: string
-  quantity: number
-  isFavorite?: boolean
-}
+import ProductCard from '@/components/Product'
+import type { Product } from '@/models/product.models'
+
 const ProductDetailView = () => {
   const { productId } = useParams()
 
@@ -74,7 +67,7 @@ const ProductDetailView = () => {
     return (
       <div className='mx-w-[550px] mx-auto mt-8'>
         {JSON.stringify(hasProductInFavorite)}
-        <Product
+        <ProductCard
           {...findProduct}
           hasProductInCart={hasProductInCart}
           hasProductInFavorite={hasProductInFavorite}
@@ -90,7 +83,7 @@ const ProductDetailView = () => {
             onChange={(event) => handleChangeQuantity(event)}
             className="w-8 p-1 border border-gray-300 rounded md:w-16"
           />
-        </Product>
+        </ProductCard>
       </div>
     )
   }
