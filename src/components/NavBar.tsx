@@ -20,6 +20,9 @@ const NavBar = () => {
             Favoritos
           </Button>
         </Link>
+        <Link to="/users">
+          Ver Usuarios
+        </Link>
       </div>
     </nav>
   )

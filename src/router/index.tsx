@@ -4,6 +4,8 @@ import CheckoutView from '@/views/CheckoutView'
 import ProductDetailView from '@/views/ProductDetailView';
 import FavoriteView from '@/views/FavoriteView';
 import ThanksView from '@/views/ThanksView';
+import UsersListView from '@/views/UsersListView';
+import UserView from '@/views/UserView';
 import DefaultLayout from '@/layouts/DefaultLayout';
 
 const routes = [
@@ -17,7 +19,9 @@ const routes = [
       { path: 'favorite', element: <FavoriteView /> },
     ],
   },
-  { path: '/thanks', element: <ThanksView /> }
+  { path: '/thanks', element: <ThanksView /> },
+  { path: '/users', element: <UsersListView /> },
+  { path: '/users/:id', element: <UserView /> }
 ]
 
 const router = createBrowserRouter(routes)
