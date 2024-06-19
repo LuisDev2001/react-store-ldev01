@@ -20,7 +20,7 @@ const UsersView = () => {
                 <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div className="flex-1 min-w-0">
                     <p className="text-lg font-medium text-white">
-                      <b>Name:</b> {user.name}
+                      <b>Name:</b> {user.name} - ({user.username})
                     </p>
                     <p className="text-sm font-medium text-white">
                       <b>Email:</b> {user.email}

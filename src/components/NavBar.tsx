@@ -23,6 +23,9 @@ const NavBar = () => {
         <Link to="/users">
           Ver Usuarios
         </Link>
+        <Link to="/redux">
+          Contador con Redux
+        </Link>
       </div>
     </nav>
   )
