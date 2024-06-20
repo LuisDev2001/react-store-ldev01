@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { userSlice } from '@/store/user.store'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUsers } from '@/services/users.services'
-import { User } from '@/models/user.models'
+import useUsers from '@/hooks/useUsers'
 
 const UsersView = () => {
-  const [users, setUsers] = useState<User[]>([])
+  const { getUserList } = useUsers()
+  const users = useSelector(userSlice.selectors.getUsers)
 
   useEffect(() => {
-    getUsers().then((data) => setUsers(data))
-  }, [])
+    getUserList()
+  })
 
   return (
     <>
