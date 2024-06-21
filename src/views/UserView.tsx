@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import { getUser } from '@/services/users.services'
+import { getUser } from '@/services/users.service'
 import { User } from '@/models/user.models'
 
 

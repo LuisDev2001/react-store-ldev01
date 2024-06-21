@@ -1,25 +1,14 @@
-import Product from '@/components/Product'
-import Button from '@/components/Button'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-
-const products = Array.from({ length: 20 }, (_, index) => ({
-  id: `${index + 1}`,
-  name: `Producto Nike Black T-Shirt ${index + 1}`,
-  price: (index + 1) * 10,
-  discount: index < 10 ? (index + 1) * 2 : 0,
-  img: '/productImage.jpg',
-}))
-
-localStorage.setItem('products', JSON.stringify(products))
-
-if (!localStorage.getItem("favoriteProducts")) {
-  localStorage.setItem('favoriteProducts', JSON.stringify([]))
-}
+import Product from '@/components/Product'
+import Button from '@/components/Button'
+import { getProducts, deleteProduct } from '@/services/product.service'
+import type { ProductInterface } from '@/models/product.models'
 
 const HomeView = () => {
+  const [products, setProducts] = useState<ProductInterface[]>([])
   const [from, setFrom] = useState(0)
   const [to, setTo] = useState(5)
   const newProductList = products.slice(from, to)
@@ -34,12 +23,28 @@ const HomeView = () => {
     setTo(to - 5)
   }
 
+  const handleDeleteProduct = (event: Event, id: string) => {
+    event.preventDefault()
+    deleteProduct(id).then(() => {
+      alert('Producto eliminado ' + id)
+      getProducts().then((data) => {
+        setProducts(data)
+      })
+    })
+  }
+
+  useEffect(() => {
+    getProducts().then((data) => {
+      setProducts(data)
+    })
+  }, [])
+
   return (
     <div className='w-full max-w-[550px] mx-auto mt-4 flex flex-col gap-4'>
       {
         newProductList.map((product) => (
           <Link to={`product-detail/${product.id}`} key={product.id}>
-            <Product {...product} />
+            <Product {...product} onDeleteProduct={(event: Event) => handleDeleteProduct(event, product.id || '')} hasDeleteProduct />
           </Link>
         ))
       }

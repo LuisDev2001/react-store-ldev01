@@ -7,6 +7,7 @@ import ThanksView from '@/views/ThanksView';
 import UsersListView from '@/views/UsersListView';
 import UserView from '@/views/UserView';
 import CounterView from '@/views/CounterView';
+import ManageProductView from '@/views/ManageProductView';
 import DefaultLayout from '@/layouts/DefaultLayout';
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
   { path: '/users', element: <UsersListView /> },
   { path: '/users/:id', element: <UserView /> },
   { path: '/redux', element: <CounterView /> },
+  { path: '/manage-products', element: <ManageProductView /> },
 ]
 
 const router = createBrowserRouter(routes)

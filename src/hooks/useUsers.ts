@@ -1,4 +1,4 @@
-import { getUsers } from '@/services/users.services'
+import { getUsers } from '@/services/users.service'
 import { userSlice } from '@/store/user.store'
 import { useDispatch } from 'react-redux'
 const useUsers = () => {

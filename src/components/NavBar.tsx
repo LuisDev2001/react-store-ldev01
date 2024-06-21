@@ -15,16 +15,21 @@ const NavBar = () => {
             Carrito
           </Button>
         </Link>
-        <Link to="/favorite">
+        {/* <Link to="/favorite">
           <Button variant='primary'>
             Favoritos
           </Button>
-        </Link>
-        <Link to="/users">
+        </Link> */}
+        {/* <Link to="/users">
           Ver Usuarios
         </Link>
         <Link to="/redux">
           Contador con Redux
+        </Link> */}
+        <Link to="/manage-products">
+          <Button variant='primary'>
+            Admin. de Productos
+          </Button>
         </Link>
       </div>
     </nav>

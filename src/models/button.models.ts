@@ -4,7 +4,7 @@ export interface Button {
   variant: variant
   children: ReactNode
   disabled?: boolean
-  onClick?: () => void
+  onClick?: (event: Event) => void
 }
 
 export type variant = 'primary' | 'secondary'
